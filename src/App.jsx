@@ -1,15 +1,17 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import Router from "./Router";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Header from "./components/layout/Header";
-import Home from "./components/pages/Home";
+import Places from "./components/pages/Places";
+import Stalls from "./components/pages/Stalls";
+import Menu from "./components/pages/Menu";
+import Feedback from "./components/pages/Feedback";
 
 function App() {
   return (
     <>
       <Header />
-      <Home />
+      <Router />
     </>
   );
 }
