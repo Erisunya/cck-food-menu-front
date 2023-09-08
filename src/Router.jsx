@@ -17,11 +17,11 @@ const Router = () => {
           element: <Places />,
         },
         {
-          path: "/:placename",
+          path: "/:placeName",
           element: <Stalls />,
         },
         {
-          path: "/:placename/:stallname",
+          path: "/:placeName/:stallName",
           element: <Menu />,
         },
         {
