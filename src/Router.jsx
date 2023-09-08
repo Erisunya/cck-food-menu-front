@@ -28,8 +28,11 @@ const Router = () => {
           path: "/feedback",
           element: <Feedback />,
         },
+        {
+          path: "*",
+          element: <ErrorPage />,
+        },
       ],
-      errorElement: <ErrorPage />,
     },
   ]);
 
