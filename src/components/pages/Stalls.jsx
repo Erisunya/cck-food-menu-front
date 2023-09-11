@@ -1,14 +1,14 @@
 import styles from "./Stalls.module.css";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 
 const Stalls = (props) => {
   const [stalls, setStalls] = useState({});
   const [stallNames, setStallNames] = useState([]);
   const { placeName } = useParams();
+  const navigate = useNavigate();
 
-  // Return ErrorPage if place param is invalid
   useEffect(() => {
     const getStalls = async () => {
       const response = await fetch(
@@ -28,6 +28,7 @@ const Stalls = (props) => {
 
   return (
     <>
+      <button onClick={() => navigate(-1)}>Back</button>
       {Object.keys(stalls).length === 0 ? (
         <ErrorPage />
       ) : (
