@@ -8,6 +8,7 @@ const Places = () => {
     const getPlaces = async () => {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/places`);
       const data = await response.json();
+      console.log(data.places);
       let places = data.places.filter((place) => place !== "testCollection");
       setPlaces(places);
     };

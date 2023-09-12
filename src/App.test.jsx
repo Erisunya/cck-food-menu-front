@@ -10,15 +10,25 @@ describe("App component", () => {
     ).toMatch(/CCK Food Menu/i);
   });
 
-  it("renders links in navigation bar", async () => {
+  it("renders correct links in navigation bar", async () => {
     render(<App />);
 
     expect(
       screen.getByRole("heading", { name: "Feedback" }).textContent
     ).toMatch(/Feedback/i);
+    let feedbackButton = screen.getByRole("heading", { name: "Feedback" });
+    await userEvent.click(feedbackButton);
+    expect(
+      screen.getByRole("heading", { name: "Feedback Form" }).textContent
+    ).toMatch(/Feedback Form/i);
 
     expect(screen.getByRole("heading", { name: "Menus" }).textContent).toMatch(
       /Menus/i
     );
+    let menusButton = screen.getByRole("heading", { name: "Menus" });
+    await userEvent.click(menusButton);
+    expect(
+      screen.getByRole("heading", { name: "Test Place 1" }).textContent
+    ).toMatch(/Test Place 1/i);
   });
 });
