@@ -1,6 +1,7 @@
 import styles from "./Stalls.module.css";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Card from "../layout/Card";
 import ErrorPage from "./ErrorPage";
 
 const Stalls = (props) => {
@@ -23,19 +24,29 @@ const Stalls = (props) => {
 
   useEffect(() => {
     setStallNames(Object.keys(stalls).sort((a, b) => a - b));
-    console.log(Object.keys(stalls));
+    console.log(stalls);
   }, [stalls]);
 
   return (
     <>
       <button onClick={() => navigate(-1)}>Back</button>
-      {Object.keys(stalls).length === 0 ? (
-        <ErrorPage />
-      ) : (
-        stallNames.map((stallName) => {
-          return <h1 key={stallName}>{stallName}</h1>;
-        })
-      )}
+      <div className={styles.stalls}>
+        {Object.keys(stalls).length === 0 ? (
+          <ErrorPage />
+        ) : (
+          stallNames.map((stallName) => {
+            return (
+              <Card
+                key={stallName}
+                title={stallName}
+                link={`/${placeName}/${stallName}`}
+                image={stalls[stallName][0]}
+              />
+            );
+            return <h1 key={stallName}>{stallName}</h1>;
+          })
+        )}
+      </div>
     </>
   );
 };

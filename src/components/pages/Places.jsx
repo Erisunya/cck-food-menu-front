@@ -23,6 +23,7 @@ const Places = () => {
           <Card
             key={place}
             title={place}
+            link={`/${place}`}
             image="https://picsum.photos/200/300"
           />
         );
