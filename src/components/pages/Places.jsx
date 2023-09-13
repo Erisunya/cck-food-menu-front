@@ -1,5 +1,6 @@
 import styles from "./Places.module.css";
 import { useState, useEffect } from "react";
+import Card from "../layout/Card";
 
 const Places = () => {
   const [places, setPlaces] = useState([]);
@@ -8,7 +9,6 @@ const Places = () => {
     const getPlaces = async () => {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/places`);
       const data = await response.json();
-      console.log(data.places);
       let places = data.places.filter((place) => place !== "testCollection");
       setPlaces(places);
     };
@@ -17,11 +17,17 @@ const Places = () => {
   }, []);
 
   return (
-    <>
+    <div className={styles.places}>
       {places.map((place) => {
-        return <h1 key={place}>{place}</h1>;
+        return (
+          <Card
+            key={place}
+            title={place}
+            image="https://picsum.photos/200/300"
+          />
+        );
       })}
-    </>
+    </div>
   );
 };
 
