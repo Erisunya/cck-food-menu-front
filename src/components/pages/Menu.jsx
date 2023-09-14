@@ -4,20 +4,26 @@ import { useNavigate, useParams } from "react-router-dom";
 import Lightbox from "react-awesome-lightbox";
 import "react-awesome-lightbox/build/style.css";
 import Card from "../layout/Card";
+import ErrorPage from "./ErrorPage";
 
 const Menu = (props) => {
   const [menus, setMenus] = useState({});
   const [openMenu, setOpenMenu] = useState({ isOpen: false });
+  const [error, setError] = useState(false);
   const { placeName, stallName } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     const getMenus = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/places/${placeName}/${stallName}`
-      );
-      const data = await response.json();
-      setMenus(data);
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/places/${placeName}/${stallName}`
+        );
+        const data = await response.json();
+        setMenus(data);
+      } catch (error) {
+        setError(true);
+      }
     };
 
     getMenus();
@@ -50,15 +56,20 @@ const Menu = (props) => {
       {menus.halal === "Y" ? <h1 className={styles.halal}>Halal</h1> : null}
       {menus.halal === "N" ? <h1 className={styles.halal}>Not Halal</h1> : null}
       <div className={styles.menus}>
-        {menus.images?.map((image) => {
-          return (
-            <div
-              onClick={() => onMenuClickHandler(menus.images.indexOf(image))}
-            >
-              <Card key={image} image={image}></Card>
-            </div>
-          );
-        })}
+        {error ? (
+          <ErrorPage />
+        ) : (
+          menus.images?.map((image) => {
+            return (
+              <div
+                key={image}
+                onClick={() => onMenuClickHandler(menus.images.indexOf(image))}
+              >
+                <Card image={image}></Card>
+              </div>
+            );
+          })
+        )}
       </div>
       {openMenu.isOpen ? (
         <Lightbox

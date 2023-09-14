@@ -7,6 +7,7 @@ import ErrorPage from "./ErrorPage";
 const Stalls = (props) => {
   const [stalls, setStalls] = useState({});
   const [stallNames, setStallNames] = useState([]);
+  const [isFetchComplete, setIsFetchComplete] = useState(false);
   const { placeName } = useParams();
   const navigate = useNavigate();
 
@@ -17,6 +18,7 @@ const Stalls = (props) => {
       );
       const data = await response.json();
       setStalls(data);
+      setIsFetchComplete(true);
     };
 
     getStalls();
@@ -24,7 +26,6 @@ const Stalls = (props) => {
 
   useEffect(() => {
     setStallNames(Object.keys(stalls).sort((a, b) => a - b));
-    console.log(stalls);
   }, [stalls]);
 
   return (
@@ -45,7 +46,7 @@ const Stalls = (props) => {
         Go back
       </button>
       <div className={styles.stalls}>
-        {Object.keys(stalls).length === 0 ? (
+        {isFetchComplete && Object.keys(stalls).length === 0 ? (
           <ErrorPage />
         ) : (
           stallNames.map((stallName) => {
@@ -57,7 +58,6 @@ const Stalls = (props) => {
                 image={stalls[stallName][0]}
               />
             );
-            return <h1 key={stallName}>{stallName}</h1>;
           })
         )}
       </div>
