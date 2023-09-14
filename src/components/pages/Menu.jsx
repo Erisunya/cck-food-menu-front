@@ -54,18 +54,19 @@ const Menu = (props) => {
         Go back
       </button>
       {menus.halal === "Y" ? <h1 className={styles.halal}>Halal</h1> : null}
-      {menus.halal === "N" ? <h1 className={styles.halal}>Not Halal</h1> : null}
+      {menus.halal === "N" ? <h1 className={styles.halal}>Non-Halal</h1> : null}
       <div className={styles.menus}>
         {error ? (
           <ErrorPage />
         ) : (
           menus.images?.map((image) => {
+            let imageURI = `${image.slice(0, -4)}m${image.slice(-4)}`;
             return (
               <div
                 key={image}
                 onClick={() => onMenuClickHandler(menus.images.indexOf(image))}
               >
-                <Card image={image}></Card>
+                <Card image={imageURI}></Card>
               </div>
             );
           })

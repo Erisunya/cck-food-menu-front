@@ -50,12 +50,15 @@ const Stalls = (props) => {
           <ErrorPage />
         ) : (
           stallNames.map((stallName) => {
+            let imageURI = `${stalls[stallName][0].slice(0, -4)}m${stalls[
+              stallName
+            ][0].slice(-4)}`;
             return (
               <Card
                 key={stallName}
                 title={stallName}
                 link={`/${placeName}/${stallName}`}
-                image={stalls[stallName][0]}
+                image={imageURI}
               />
             );
           })
