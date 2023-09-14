@@ -7,3 +7,22 @@
   justify-content: center;
   gap: 1rem 1rem;
 }
+
+.button {
+  all: unset;
+  cursor: pointer;
+  user-select: none;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+  white-space: nowrap;
+  border: none;
+  background: transparent;
+  color: black;
+  padding-left: 1em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
