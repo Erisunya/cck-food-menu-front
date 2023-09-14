@@ -7,7 +7,7 @@ import Card from "../layout/Card";
 
 const Menu = (props) => {
   const [menus, setMenus] = useState({});
-  const [isOpen, setIsOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState({ isOpen: false });
   const { placeName, stallName } = useParams();
   const navigate = useNavigate();
 
@@ -17,20 +17,15 @@ const Menu = (props) => {
         `${import.meta.env.VITE_API_URL}/places/${placeName}/${stallName}`
       );
       const data = await response.json();
-      console.log("getMenus");
       setMenus(data);
     };
 
     getMenus();
   }, []);
 
-  useEffect(() => {
-    console.log(menus);
-    console.log(menus.images);
-  }, [menus]);
-
-  const onMenuClickHandler = () => {
-    setIsOpen(!isOpen);
+  const onMenuClickHandler = (menuIndex) => {
+    let newOpenMenu = { isOpen: !openMenu.isOpen, index: menuIndex };
+    setOpenMenu(newOpenMenu);
   };
 
   // Return ErrorPage if stall param is invalid
@@ -40,18 +35,25 @@ const Menu = (props) => {
       <button onClick={() => navigate(-1)}>Back</button>
       {menus.halal === "Y" ? <h1 className={styles.halal}>Halal</h1> : null}
       {menus.halal === "N" ? <h1 className={styles.halal}>Not Halal</h1> : null}
-      {/* {menus.images ? <Lightbox images={menus.images}></Lightbox> : null} */}
       <div className={styles.menus}>
         {menus.images?.map((image) => {
           return (
-            <div onClick={onMenuClickHandler}>
+            <div
+              onClick={() => onMenuClickHandler(menus.images.indexOf(image))}
+            >
               <Card key={image} image={image}></Card>
             </div>
           );
         })}
       </div>
-      {isOpen ? (
-        <Lightbox images={menus.images} onClose={onMenuClickHandler}></Lightbox>
+      {openMenu.isOpen ? (
+        <Lightbox
+          images={menus.images}
+          onClose={onMenuClickHandler}
+          startIndex={openMenu.index}
+          allowRotate={false}
+          doubleClickZoom={2.5}
+        ></Lightbox>
       ) : null}
     </>
   );
