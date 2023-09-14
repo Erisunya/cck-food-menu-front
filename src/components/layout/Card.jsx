@@ -5,13 +5,15 @@ const Card = (props) => {
   return (
     <Link to={props.link} className={styles.link}>
       <div className={styles.card}>
-        {props.image ? (
-          <img
-            className={styles.image}
-            src={props.image}
-            alt={`A picture depicting ${props.title}`}
-          />
-        ) : null}
+        <div className={styles.imageContainer}>
+          {props.image ? (
+            <img
+              className={styles.image}
+              src={props.image}
+              alt={`A picture depicting ${props.title}`}
+            />
+          ) : null}
+        </div>
         <h1 className={styles.title}>{props.title}</h1>
       </div>
     </Link>
