@@ -22,8 +22,13 @@
   color: #000;
 }
 
+.formSubtitle {
+  font-size: 0.875rem;
+  font-style: italic;
+  text-align: center;
+}
+
 .inputContainer {
-  position: relative;
   display: flex;
   flex-direction: column;
 }
