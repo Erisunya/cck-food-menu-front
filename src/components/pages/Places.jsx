@@ -21,6 +21,7 @@ const Places = () => {
   useEffect(() => {
     let keys = Object.keys(places).sort((a, b) => a - b);
     setPlaceNames(keys);
+    console.log(places);
   }, [places]);
 
   return (

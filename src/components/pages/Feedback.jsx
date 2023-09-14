@@ -1,6 +1,5 @@
 import styles from "./Feedback.module.css";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 
 const Feedback = () => {
   const {
@@ -8,35 +7,17 @@ const Feedback = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [submitMessage, setSubmitMessage] = useState("");
 
-  const onSubmit = async (data) => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/feedback`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.status === 201) {
-        setSubmitMessage("Thank you for your feedback!");
-      } else {
-        setSubmitMessage("Something has gone wrong, please try again later.");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   return (
     <div className={styles.feedback}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <p className={styles.formTitle}>Please leave your feedback here!</p>
-
+        <p className={styles.formTitle}>Leave your feedback here!</p>
         <div className={styles.inputContainer}>
-          <label htmlFor="name">Name*</label>
+          <label htmlFor="name">Name</label>
           <input
             placeholder="Joseph Tan Ah Kow"
             type="text"
@@ -44,20 +25,6 @@ const Feedback = () => {
             {...register("name", { required: true })}
           />
         </div>
-
-        <div className={styles.inputContainer}>
-          <label htmlFor="feedback">Feedback*</label>
-          <textarea
-            placeholder="Hi, the menu for ABC Chicken Rice is out of date."
-            id="feedback"
-            rows={4}
-            {...register("feedback", { required: true })}
-          />
-        </div>
-        <p className={styles.formSubtitle}>
-          Please leave your email or Telegram handle if you'd like to be
-          contacted.
-        </p>
 
         <div className={styles.inputContainer}>
           <label htmlFor="email">Email</label>
@@ -70,18 +37,28 @@ const Feedback = () => {
         </div>
 
         <div className={styles.inputContainer}>
-          <label htmlFor="telegramHandle">Telegram</label>
+          <label htmlFor="telegram">Telegram</label>
           <input
             placeholder="@josepthtaw"
             type="text"
-            id="telegramHandle"
-            {...register("telegramHandle")}
+            id="telegram"
+            {...register("telegram")}
           />
         </div>
+
+        <div className={styles.inputContainer}>
+          <label htmlFor="feedback">Feedback</label>
+          <textarea
+            placeholder="Can you please update the menu from ABC Chicken Rice to show the latest price?"
+            id="feedback"
+            rows={4}
+            {...register("feedback", { required: true })}
+          />
+        </div>
+
         <button type="submit" className={styles.submit}>
           Submit
         </button>
-        <p className={styles.formSubtitle}>{submitMessage}</p>
       </form>
     </div>
   );
