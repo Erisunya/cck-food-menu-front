@@ -1,0 +1,12 @@
+.errorPage {
+  font-family: "Lato", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.errorPage p {
+  font-style: italic;
+  font-weight: 400;
+}
