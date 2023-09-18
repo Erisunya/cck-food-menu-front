@@ -53,8 +53,14 @@ const Menu = (props) => {
         </svg>
         Back
       </button>
-      {menus.halal === "Y" ? <h1 className={styles.halal}>Halal</h1> : null}
-      {menus.halal === "N" ? <h1 className={styles.halal}>Non-Halal</h1> : null}
+      {menus.halal === "Y" ? (
+        <p className={styles.halal}>This place is halal-certified.</p>
+      ) : null}
+      {menus.halal === "N" ? (
+        <p className={styles.halal}>
+          This place is <u>not</u> halal-certified.
+        </p>
+      ) : null}
       <div className={styles.menus}>
         {error ? (
           <ErrorPage />
