@@ -8,14 +8,11 @@ const Header = () => {
       <nav className={styles.header}>
         <div className={styles.logoContainer}>
           <img src={logo} alt="Logo of CCK Menus Web" className={styles.logo} />
-          <div>
+          <Link to="/" className={styles.link}>
             <h1>CCK Menus</h1>
-          </div>
+          </Link>
         </div>
         <div className={styles.links}>
-          <Link to="/" className={styles.link}>
-            <h1>Menus</h1>
-          </Link>
           <Link to="/feedback" className={styles.link}>
             <h1>Feedback</h1>
           </Link>
