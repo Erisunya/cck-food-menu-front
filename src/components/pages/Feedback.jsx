@@ -5,7 +5,7 @@ const Feedback = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty, isSubmitted },
   } = useForm();
 
   const onSubmit = (data) => {
@@ -25,6 +25,27 @@ const Feedback = () => {
             {...register("name", { required: true })}
           />
         </div>
+        {isSubmitted && errors.name && (
+          <p className={styles.error}>Name is required.</p>
+        )}
+
+        <div className={styles.inputContainer}>
+          <label htmlFor="feedback">Feedback</label>
+          <textarea
+            placeholder="Can you please update the menu from ABC Chicken Rice to show the latest price?"
+            id="feedback"
+            rows={4}
+            {...register("feedback", { required: true })}
+          />
+        </div>
+        {isSubmitted && errors.feedback && (
+          <p className={styles.error}>Feedback is required.</p>
+        )}
+
+        <p className={styles.contactText}>
+          If you'd like to be contacted regarding your feedback, please leave
+          your email and/or Telegram handle below as well.
+        </p>
 
         <div className={styles.inputContainer}>
           <label htmlFor="email">Email</label>
@@ -35,6 +56,9 @@ const Feedback = () => {
             {...register("email", { pattern: /^\S+@\S+$/i })}
           />
         </div>
+        {isSubmitted && errors.email && (
+          <p className={styles.error}>Please provide a valid email.</p>
+        )}
 
         <div className={styles.inputContainer}>
           <label htmlFor="telegram">Telegram</label>
@@ -46,17 +70,11 @@ const Feedback = () => {
           />
         </div>
 
-        <div className={styles.inputContainer}>
-          <label htmlFor="feedback">Feedback</label>
-          <textarea
-            placeholder="Can you please update the menu from ABC Chicken Rice to show the latest price?"
-            id="feedback"
-            rows={4}
-            {...register("feedback", { required: true })}
-          />
-        </div>
-
-        <button type="submit" className={styles.submit}>
+        <button
+          type="submit"
+          disabled={!isDirty || (isSubmitted && Object.keys(errors).length)}
+          className={styles.submit}
+        >
           Submit
         </button>
       </form>
