@@ -5,8 +5,15 @@ const Header = () => {
   return (
     <>
       <nav className={styles.header}>
-        <div>
-          <h1>CCK Food Menu</h1>
+        <div className={styles.logoContainer}>
+          <img
+            src="src\assets\logo.jpg"
+            alt="Logo of CCK Menus Web"
+            className={styles.logo}
+          />
+          <div>
+            <h1>CCK Menus</h1>
+          </div>
         </div>
         <div className={styles.links}>
           <Link to="/" className={styles.link}>

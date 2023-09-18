@@ -19,7 +19,7 @@ const Feedback = () => {
         <div className={styles.inputContainer}>
           <label htmlFor="name">Name</label>
           <input
-            placeholder="Joseph Tan Ah Kow"
+            placeholder="Joseph Tan Chee Guan"
             type="text"
             id="name"
             {...register("name", { required: true })}
@@ -29,7 +29,7 @@ const Feedback = () => {
         <div className={styles.inputContainer}>
           <label htmlFor="email">Email</label>
           <input
-            placeholder="josepthtaw@gmail.com"
+            placeholder="josepthtcg@gmail.com"
             type="text"
             id="email"
             {...register("email", { pattern: /^\S+@\S+$/i })}
@@ -39,7 +39,7 @@ const Feedback = () => {
         <div className={styles.inputContainer}>
           <label htmlFor="telegram">Telegram</label>
           <input
-            placeholder="@josepthtaw"
+            placeholder="@josepthtcg"
             type="text"
             id="telegram"
             {...register("telegram")}
