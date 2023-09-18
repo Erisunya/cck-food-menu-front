@@ -8,6 +8,7 @@
   padding: 0 2cqw;
   margin-bottom: 1em;
   font-family: "Lato", sans-serif;
+  font-size: clamp(10px, 3.5vw, 16px);
   position: sticky;
 
   display: flex;
