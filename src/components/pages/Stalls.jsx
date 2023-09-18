@@ -8,17 +8,22 @@ const Stalls = (props) => {
   const [stalls, setStalls] = useState({});
   const [stallNames, setStallNames] = useState([]);
   const [isFetchComplete, setIsFetchComplete] = useState(false);
+  const [error, setError] = useState(false);
   const { placeName } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     const getStalls = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/places/${placeName}`
-      );
-      const data = await response.json();
-      setStalls(data);
-      setIsFetchComplete(true);
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/places/${placeName}`
+        );
+        const data = await response.json();
+        setStalls(data);
+        setIsFetchComplete(true);
+      } catch (error) {
+        setError(true);
+      }
     };
 
     getStalls();
@@ -46,7 +51,7 @@ const Stalls = (props) => {
         Back
       </button>
       <div className={styles.stalls}>
-        {isFetchComplete && Object.keys(stalls).length === 0 ? (
+        {error || (isFetchComplete && Object.keys(stalls).length === 0) ? (
           <ErrorPage />
         ) : (
           stallNames.map((stallName) => {
