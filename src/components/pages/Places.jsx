@@ -11,7 +11,6 @@ const Places = () => {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/places`);
       const data = await response.json();
       delete data["Test Place 1"];
-      let places = Object.keys(data).sort((a, b) => a - b);
       setPlaces(data);
     };
 

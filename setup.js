@@ -20,7 +20,7 @@ if (!globalThis.fetch) {
 }
 
 const places = {
-  places: ["Test Place 1"],
+  "Test Place Mock": "Test Place Mock Link",
 };
 
 export const restHandlers = [
