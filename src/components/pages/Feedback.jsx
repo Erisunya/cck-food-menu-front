@@ -26,7 +26,7 @@ const Feedback = () => {
         setSubmitMessage("Something has gone wrong, please try again later.");
       }
     } catch (error) {
-      console.log(error);
+      setSubmitMessage("Something has gone wrong, please try again later.");
     }
   };
 
