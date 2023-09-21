@@ -11,7 +11,6 @@ const Feedback = () => {
   const [submitMessage, setSubmitMessage] = useState("");
 
   const onSubmit = async (data) => {
-    setSubmitMessage("Sending feedback...");
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/feedback`, {
         method: "POST",
