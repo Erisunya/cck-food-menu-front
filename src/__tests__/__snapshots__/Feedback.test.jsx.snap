@@ -22,7 +22,7 @@ exports[`Feedback component > renders feedback form correctly 1`] = `
             <label
               for="name"
             >
-              Name
+              Name*
             </label>
             <input
               id="name"
@@ -37,7 +37,7 @@ exports[`Feedback component > renders feedback form correctly 1`] = `
             <label
               for="feedback"
             >
-              Feedback
+              Feedback*
             </label>
             <textarea
               id="feedback"
@@ -70,13 +70,13 @@ exports[`Feedback component > renders feedback form correctly 1`] = `
             class="_inputContainer_2acf0e"
           >
             <label
-              for="telegram"
+              for="telegramHandle"
             >
               Telegram
             </label>
             <input
-              id="telegram"
-              name="telegram"
+              id="telegramHandle"
+              name="telegramHandle"
               placeholder="@josepthtcg"
               type="text"
             />
@@ -88,6 +88,9 @@ exports[`Feedback component > renders feedback form correctly 1`] = `
           >
             Submit
           </button>
+          <p
+            class="_formSubtitle_2acf0e"
+          />
         </form>
       </div>
     </div>
@@ -110,7 +113,7 @@ exports[`Feedback component > renders feedback form correctly 1`] = `
           <label
             for="name"
           >
-            Name
+            Name*
           </label>
           <input
             id="name"
@@ -125,7 +128,7 @@ exports[`Feedback component > renders feedback form correctly 1`] = `
           <label
             for="feedback"
           >
-            Feedback
+            Feedback*
           </label>
           <textarea
             id="feedback"
@@ -158,13 +161,13 @@ exports[`Feedback component > renders feedback form correctly 1`] = `
           class="_inputContainer_2acf0e"
         >
           <label
-            for="telegram"
+            for="telegramHandle"
           >
             Telegram
           </label>
           <input
-            id="telegram"
-            name="telegram"
+            id="telegramHandle"
+            name="telegramHandle"
             placeholder="@josepthtcg"
             type="text"
           />
@@ -176,6 +179,9 @@ exports[`Feedback component > renders feedback form correctly 1`] = `
         >
           Submit
         </button>
+        <p
+          class="_formSubtitle_2acf0e"
+        />
       </form>
     </div>
   </div>,

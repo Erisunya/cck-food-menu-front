@@ -16,7 +16,7 @@ describe("Feedback component", () => {
     expect(document.querySelector("button").disabled).toBeTruthy();
 
     await userEvent.type(
-      screen.getByRole("textbox", { name: "Name" }),
+      screen.getByRole("textbox", { name: "Name*" }),
       "Alex Lim"
     );
 
